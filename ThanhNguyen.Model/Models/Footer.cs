@@ -7,6 +7,7 @@ namespace ThanhNguyen.Model.Models
     public class Footer
     {
         [Key]
+        [MaxLength(50)]
         public string ID { set; get; }
 
         [Required]

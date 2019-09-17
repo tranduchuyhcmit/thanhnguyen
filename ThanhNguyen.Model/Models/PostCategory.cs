@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Security.Principal;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using ThanhNguyen.Model.Abstract;
@@ -12,7 +12,7 @@ using ThanhNguyen.Model.Abstract;
 namespace ThanhNguyen.Model.Models
 {
     [Table("ProductCategories")]
-    public class ProductCategory : Auditable
+    public class PostCategory : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,10 +24,10 @@ namespace ThanhNguyen.Model.Models
 
         [Required]
         [MaxLength(256)]
+        [Column(TypeName = "varchar")]
         public string Alias { set; get; }
 
-        [Required]
-        [MaxLength(256)]
+        [MaxLength(500)]
         public string Description { set; get; }
 
         public int? ParentID { set; get; }
@@ -38,7 +38,7 @@ namespace ThanhNguyen.Model.Models
 
         public bool? HomeFlag { set; get; }
 
-        //triển khai khóa ngoại cho Products
-        public virtual IEnumerable<Product> Products { set; get; }
+        //Post đã trỏ đến PostCategories
+        public virtual IEnumerable<Post> Posts { set; get; }
     }
 }

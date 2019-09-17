@@ -12,10 +12,11 @@ namespace ThanhNguyen.Model.Models
     public class VisitorStatistic
     {
         [Key]
-        public int ID { set; get; }
+        public Guid ID { set; get; }
 
-        public string VisitedDate { set; get; }
+        public DateTime VisitedDate { set; get; }
         
+        [MaxLength(50)]
         public string IPAddress { set; get; }
     }
 }

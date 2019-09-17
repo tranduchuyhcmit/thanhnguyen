@@ -16,21 +16,27 @@ namespace ThanhNguyen.Model.Models
         public int ID { set; get; }
 
         [Required]
+        [MaxLength(50)]
         public string Name { set; get; }
 
-        [Required]
+        [MaxLength(50)]
         public string Department { set; get; }
 
+        [MaxLength(50)]
         public string Skype { set; get; }
 
-        [Required]
+        [MaxLength(50)]
         public string Mobile { set; get; }
-        [Required]
+
+        [MaxLength(50)]
         public string Email { set; get; }
 
+        [MaxLength(50)]
         public string Facebook { set; get; }
 
         [Required]
         public bool Status { set; get; }
+
+        //thiếu Yahoo và DisplayOrder 
     }
 }

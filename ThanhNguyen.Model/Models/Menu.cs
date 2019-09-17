@@ -17,9 +17,11 @@ namespace ThanhNguyen.Model.Models
         public int ID { set; get; }
 
         [Required]
+        [MaxLength(50)]
         public string Name { set; get; }
 
         [Required]
+        [MaxLength(250)]
         public string URL { set; get; }
 
         public int? DisplayOrder { set; get; }
@@ -29,6 +31,7 @@ namespace ThanhNguyen.Model.Models
         [ForeignKey("GroupID")]
         public virtual MenuGroup MenuGroup { set; get; }
 
+        [MaxLength(10)]
         public string Target { set; get; }
 
         [Required]
