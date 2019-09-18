@@ -37,6 +37,8 @@ namespace ThanhNguyen.Model.Models
         [Required]
         public bool Status { set; get; }
 
+        public int? DisplayOrder { set; get; }
+
         //thiếu Yahoo và DisplayOrder 
     }
 }

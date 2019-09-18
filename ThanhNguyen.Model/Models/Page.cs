@@ -20,6 +20,11 @@ namespace ThanhNguyen.Model.Models
         [MaxLength(256)]
         public string Name { set; get; }
 
+        [Column(TypeName ="varchar")]
+        [Required]
+        [MaxLength(256)]
+        public string Alias { set; get; }
+
         public string Content { set; get; }
         
     }

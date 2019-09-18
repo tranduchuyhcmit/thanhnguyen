@@ -44,9 +44,6 @@ namespace ThanhNguyen.Model.Models
 
         public bool Status { set; get; }
 
-
-
-
         //-----------------------------------
         //OrderDetails đã trỏ đến Orders
         public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }

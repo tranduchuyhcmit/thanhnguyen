@@ -14,6 +14,7 @@ namespace ThanhNguyen.Model.Models
         [Key]
         public Guid ID { set; get; }
 
+        [Required]
         public DateTime VisitedDate { set; get; }
         
         [MaxLength(50)]
