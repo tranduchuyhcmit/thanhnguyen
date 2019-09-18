@@ -19,5 +19,6 @@ namespace ThanhNguyen.Model.Models
         
         [MaxLength(50)]
         public string IPAddress { set; get; }
+
     }
 }
