@@ -48,7 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IReposiroty.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThanhNguyenDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -59,6 +64,13 @@
       <Project>{66cd6411-eb10-4e92-95cd-adb25a8fd6d8}</Project>
       <Name>ThanhNguyen.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThanhNguyen.Model\ThanhNguyen.Model.csproj">
+      <Project>{1e18279d-368a-49a3-8bce-1392de5159a3}</Project>
+      <Name>ThanhNguyen.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
