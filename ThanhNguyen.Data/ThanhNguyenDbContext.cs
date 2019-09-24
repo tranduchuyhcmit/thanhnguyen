@@ -8,7 +8,7 @@ using ThanhNguyen.Model.Models;
 
 namespace ThanhNguyen.Data
 {
-    class ThanhNguyenDbContext : DbContext
+    public class ThanhNguyenDbContext : DbContext
     {
         public ThanhNguyenDbContext() : base("ThanhNguyenConnection")
         {
@@ -21,6 +21,12 @@ namespace ThanhNguyen.Data
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
+
+        internal ThanhNguyenDbContext Init()
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<Order> Orders { set; get; }
         public DbSet<OrderDetail> OrderDetails { set; get; }
         public DbSet<Page> Pages { set; get; }
