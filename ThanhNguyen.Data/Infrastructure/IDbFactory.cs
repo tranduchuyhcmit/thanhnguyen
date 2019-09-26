@@ -8,6 +8,7 @@ namespace ThanhNguyen.Data.Infrastructure
 {
     public interface IDbFactory : IDisposable
     {
+        //Init ra DbContext
         ThanhNguyenDbContext Init();
     }
 }

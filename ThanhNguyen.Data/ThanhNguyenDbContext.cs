@@ -47,6 +47,7 @@ namespace ThanhNguyen.Data
             return new ThanhNguyenDbContext();
         }
 
+        //Ghi đè 1 cái ModelCreating
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             

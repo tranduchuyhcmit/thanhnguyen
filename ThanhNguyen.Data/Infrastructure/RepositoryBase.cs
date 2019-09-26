@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ThanhNguyen.Data.Infrastructure
 {
     // Lớp RepositoryBase thực thi các class đã định nghĩa trong IReposiroty
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IReposiroty<T> where T : class
     {
         #region Properties
         private ThanhNguyenDbContext dataContext;
@@ -25,7 +25,7 @@ namespace ThanhNguyen.Data.Infrastructure
 
         protected ThanhNguyenDbContext DbContext
         {
-            get { return dataContext ?? (dataContext = DbContext.Init()); }
+            get { return dataContext ?? (dataContext = DbFactory.Init()); }
         }
         #endregion
 
@@ -35,15 +35,17 @@ namespace ThanhNguyen.Data.Infrastructure
             dbSet = DbContext.Set<T>();
         }
 
-        /*
-         =====================================================================
-         =====================================================================
-         =====================================================================
-         =====================================================================
-         =====================================================================
-         =====================================================================
-         =====================================================================
-         =====================================================================*/
+
+        /*============================================================================================
+         * ============================================================================================
+         * ============================================================================================
+         * ============================================================================================
+         * ============================================================================================
+         * ============================================================================================
+         * ============================================================================================
+         * ============================================================================================
+         * ============================================================================================
+         */
 
         #region Implementation
         public virtual T Add(T entity)
@@ -57,17 +59,15 @@ namespace ThanhNguyen.Data.Infrastructure
             dataContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual T Dalete(T entity)
+        public virtual T Delete(T entity)
         {
             return dbSet.Remove(entity);
         }
-
         public virtual T Delete(int id)
         {
             var entity = dbSet.Find(id);
             return dbSet.Remove(entity);
         }
-
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
@@ -75,7 +75,7 @@ namespace ThanhNguyen.Data.Infrastructure
                 dbSet.Remove(obj);
         }
 
-        public T GetSingleById(int id)
+        public virtual T GetSingleById(int id)
         {
             return dbSet.Find(id);
         }
@@ -85,6 +85,7 @@ namespace ThanhNguyen.Data.Infrastructure
             return dbSet.Where(where).ToList();
         }
 
+
         public virtual int Count(Expression<Func<T, bool>> where)
         {
             return dbSet.Count(where);
@@ -93,7 +94,6 @@ namespace ThanhNguyen.Data.Infrastructure
         public IEnumerable<T> GetAll(string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
-            //XỬ LÝ BAO GỒM CHO CÁC ĐỐI TƯỢNG LIÊN KẾT NẾU ÁP DỤNG
             if (includes != null && includes.Count() > 0)
             {
                 var query = dataContext.Set<T>().Include(includes.First());
@@ -131,7 +131,7 @@ namespace ThanhNguyen.Data.Infrastructure
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
-        public virtual IEnumerable<T> GetMultiPagin(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;
@@ -154,13 +154,12 @@ namespace ThanhNguyen.Data.Infrastructure
             return _resetSet.AsQueryable();
         }
 
-
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
         }
-
         #endregion
+
 
     }
 }
